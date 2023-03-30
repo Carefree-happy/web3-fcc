@@ -3,15 +3,17 @@ pragma solidity ^0.8.0;
 
 import "./PriceConverter.sol";
 
+error NotOwner();
+
 contract SafeMathTester {
     using PriceConverter for uint256;
 
-    uint256 public minimumUsd = 50 * 1e18;
+    uint256 public constant minimumUsd = 50 * 1e18;
 
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
-    address public owner;
+    address public immutable owner;
 
     constructor() {
         owner = msg.sender;
@@ -19,7 +21,6 @@ contract SafeMathTester {
 
 
     function fund() public payable {
-        // msg.value is consider as the first parameter for any of those library functions
         require(msg.value.getConversionRate() >= minimumUsd, "Didn't send enough");
         funders.push(msg.sender);
         addressToAmountFunded[msg.sender] = msg.value;
@@ -31,23 +32,21 @@ contract SafeMathTester {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
-        // reset the array
         funders = new address[](0);
-        // actually withdraw the funds
-
-        // // transfer
-        // payable(msg.sender).transfer(address(this).balance);
-        // // send
-        // bool sendSuccess = payable(msg.sender).send(address(this).balance);
-        // require(sendSuccess, "Send failed");
-        // call
         (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+        revert();
     }
 
     modifier onlyOwner {
         // do require then _ & do _ then require
-        require(msg.sender == owner, "Sender is not owner");
+        // require(msg.sender == owner, "Sender is not owner");
+        if(msg.sender != owner) { revert NotOwner(); }
         _;
     }
+
+    // what happens if someone sends the contract ETH without calling the fund function?
+
+    // receive()
+    // callback()
 }
