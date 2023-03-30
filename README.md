@@ -6,3 +6,5 @@ ganache 假的区块链
 echo $CAT
 export CAT=dog
 echo $CAT
+
+PRIVATE_KEY=0a78fa3bd09bdb583ca8926887d68300ee674c0ca705e0720d713b180099a17b RPC_URL=http://127.0.0.1:7545 node deploy.js
