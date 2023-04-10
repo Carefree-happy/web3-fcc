@@ -22,4 +22,6 @@ ganache choose [show keys]
 
 change chainId to 1337
 
+4. [UNKNOWN_ERROR: the tx doesn't have the correct nonce. account has nonce of: 12 tx has nonce of: 11](restart ganache)
 
+5. 
