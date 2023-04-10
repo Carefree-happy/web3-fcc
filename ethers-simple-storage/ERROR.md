@@ -23,5 +23,13 @@ ganache choose [show keys]
 change chainId to 1337
 
 4. [UNKNOWN_ERROR: the tx doesn't have the correct nonce. account has nonce of: 12 tx has nonce of: 11](restart ganache)
+   wait for resolved
 
-5. 
+5. [message: "sender doesn't have enough funds to send tx. The upfront cost is: 11250820000000000 and the sender's account only has: 0"](restart ganache)
+  it is well after a moment
+
+6. 
+
+
+
+

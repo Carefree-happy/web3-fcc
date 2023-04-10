@@ -42,7 +42,14 @@ pnpm solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleSt
 
 2. Injected Provider - MetaMask
 
-3. ss
+
+
+3. Shell & .env
+echo $CAT
+export CAT=dog
+echo $CAT
+
+
 4. ss
 5. ss
 6. ss
