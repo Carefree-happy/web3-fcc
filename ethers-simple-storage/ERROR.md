@@ -18,4 +18,8 @@
 
 ganache choose [show keys]
 
-3. 
+3. [TypeError: transaction chainId mismatch (argument="tx.chainId", value=5777, code=INVALID_ARGUMENT, version=6.3.0)](https://stackoverflow.com/questions/72276562/ethers-js-set-noonce-when-using-contract-object)
+
+change chainId to 1337
+
+
